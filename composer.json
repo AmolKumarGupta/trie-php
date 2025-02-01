@@ -1,0 +1,34 @@
+{
+    "name": "amol/trie",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Amol\\Trie\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Amol\\Trie\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "php": "^8.2",
+        "pestphp/pest": "^3.7",
+        "phpstan/phpstan": "^2.1",
+        "friendsofphp/php-cs-fixer": "^3.68"
+    },
+    "scripts": {
+        "test": "pest",
+        "lint": [
+            "@style",
+            "@phpstan"
+        ],
+        "style": "php-cs-fixer fix .",
+        "phpstan": "phpstan analyse"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}

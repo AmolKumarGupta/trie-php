@@ -1,0 +1,8 @@
+parameters:
+    phpVersion: 80200
+
+    paths:
+        - src/
+
+    # Level 9 is the highest level
+    level: 9

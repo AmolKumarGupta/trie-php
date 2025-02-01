@@ -1,0 +1,9 @@
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: DockerFile
+    container_name: strfish-php
+    restart: always
+    volumes:
+      - .:/app
