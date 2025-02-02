@@ -58,10 +58,6 @@ class Trie
 
         $list = [];
 
-        if ($cur->isEnd) {
-            $list[] = $curString;
-        }
-
         for ($i = 0; $i < mb_strlen($str); $i++) {
             $char = $str[$i];
             $curString .= $char;
@@ -71,6 +67,10 @@ class Trie
             }
 
             $cur = $cur->children[$char];
+        }
+
+        if ($cur->isEnd) {
+            $list[] = $curString;
         }
 
         foreach ($cur->children as $char => $node) {
