@@ -4,3 +4,6 @@ vendor/
 
 dicts/*
 !dicts/.gitkeep
+
+reports/*
+!reports/.gitkeep

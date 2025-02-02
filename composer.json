@@ -8,14 +8,16 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Amol\\Trie\\Tests\\": "tests/"
+            "Amol\\Trie\\Tests\\": "tests/",
+            "Amol\\Trie\\Benchmarks\\": "benchmarks/"
         }
     },
     "require-dev": {
         "php": "^8.2",
         "pestphp/pest": "^3.7",
         "phpstan/phpstan": "^2.1",
-        "friendsofphp/php-cs-fixer": "^3.68"
+        "friendsofphp/php-cs-fixer": "^3.68",
+        "phpbench/phpbench": "^1.4"
     },
     "scripts": {
         "test": "pest",
@@ -23,8 +25,9 @@
             "@style",
             "@phpstan"
         ],
-        "style": "php-cs-fixer fix .",
-        "phpstan": "phpstan analyse"
+        "style": "php-cs-fixer fix",
+        "phpstan": "phpstan analyse",
+        "bench": "phpbench run --report=aggregate --retry-threshold=5"
     },
     "config": {
         "allow-plugins": {
