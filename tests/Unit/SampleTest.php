@@ -28,10 +28,16 @@ it('add words and get autocomplete suggestions', function () {
     $trie->add('apples');
     $trie->add('banana');
 
-    // expect($trie->autocomplete('app'))->toBe(['app', 'apple', 'apples']);
+    expect($trie->autocomplete('app'))->toBe(['app', 'apple', 'apples']);
+    expect($trie->autocomplete('appl'))->toBe(['apple', 'apples']);
+    expect($trie->autocomplete('apple'))->toBe(['apple', 'apples']);
+    expect($trie->autocomplete('apples'))->toBe(['apples']);
     expect($trie->autocomplete('a'))->toBe(['app', 'apple', 'apples']);
+
     expect($trie->autocomplete('b'))->toBe(['banana']);
     expect($trie->autocomplete('c'))->toBe([]);
-    // expect($trie->autocomplete('hello'))->toBe(['hello']);
+
+    expect($trie->autocomplete('hello'))->toBe(['hello']);
+    expect($trie->autocomplete('hell'))->toBe(['hello']);
     expect($trie->autocomplete('hellooo'))->toBe([]);
 });
