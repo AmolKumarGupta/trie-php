@@ -70,7 +70,8 @@ class CompressedTrie
         $str = mb_strtolower($str);
         $cur = $this->root;
 
-        for ($i = 0; $i < mb_strlen($str); $i++) {
+        $strLen = mb_strlen($str);
+        for ($i = 0; $i < $strLen; $i++) {
             $char = $str[$i];
 
             if (! isset($cur->children[$char])) {
@@ -78,6 +79,13 @@ class CompressedTrie
             }
 
             $cur = $cur->children[$char];
+
+            $prefixLen = $this->commonPrefix(substr($str, $i + 1), $cur->label);
+            if ($prefixLen < mb_strlen($cur->label)) {
+                return false;
+            }
+
+            $i += $prefixLen;
         }
 
         return $cur->isEnd;
@@ -91,7 +99,8 @@ class CompressedTrie
 
         $list = [];
 
-        for ($i = 0; $i < mb_strlen($str); $i++) {
+        $strLen = mb_strlen($str);
+        for ($i = 0; $i < $strLen; $i++) {
             $char = $str[$i];
             $curString .= $char;
 
@@ -101,6 +110,19 @@ class CompressedTrie
 
             /** @var CompressedNode $cur */
             $cur = $cur->children[$char];
+
+            if ($cur->label && ($i + 1) < $strLen) {
+                $choppedStr = substr($str, $i + 1);
+
+                $prefixLen = $this->commonPrefix($choppedStr, $cur->label);
+                if ($prefixLen < mb_strlen($choppedStr) && $prefixLen < mb_strlen($cur->label)) {
+                    return $list;
+                }
+
+                $i += ($prefixLen);
+            }
+
+            $curString .= $cur->label;
         }
 
         if ($cur->isEnd) {
@@ -108,7 +130,7 @@ class CompressedTrie
         }
 
         foreach ($cur->children as $char => $node) {
-            $local = $curString . $char;
+            $local = $curString . $char . $node->label;
             $arr = $this->autocomplete("", $node, $local);
             $list = array_merge($list, $arr);
         }
