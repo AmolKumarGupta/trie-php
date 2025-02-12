@@ -18,7 +18,8 @@ class Trie
         $str = mb_strtolower($str);
         $node = $this->root;
 
-        for ($i = 0; $i < mb_strlen($str); $i++) {
+        $strLen = mb_strlen($str);
+        for ($i = 0; $i < $strLen; $i++) {
             $char = $str[$i];
 
             if (! isset($node->children[$char])) {
@@ -37,7 +38,8 @@ class Trie
         $str = mb_strtolower($str);
         $cur = $this->root;
 
-        for ($i = 0; $i < mb_strlen($str); $i++) {
+        $strLen = mb_strlen($str);
+        for ($i = 0; $i < $strLen; $i++) {
             $char = $str[$i];
 
             if (! isset($cur->children[$char])) {
@@ -58,7 +60,8 @@ class Trie
 
         $list = [];
 
-        for ($i = 0; $i < mb_strlen($str); $i++) {
+        $strLen = mb_strlen($str);
+        for ($i = 0; $i < $strLen; $i++) {
             $char = $str[$i];
             $curString .= $char;
 
