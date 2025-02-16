@@ -29,10 +29,29 @@ Clone the repository
 ```bash
 git clone https://github.com/AmolKumarGupta/trie-php.git
 ```
+```bash
+cd trie-php
+```
 
 Install dependencies
 ```bash
 composer install
+```
+
+## Docker Support
+To build or start container
+```bash
+docker compose up -d
+```
+
+Get into container then run command like `composer test`
+```bash
+docker exec -it strfish-php sh
+```
+
+To stop container
+```bash
+docker compose down
 ```
 
 ## For Contributors
